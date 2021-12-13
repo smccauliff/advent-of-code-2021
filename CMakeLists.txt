@@ -7,9 +7,13 @@ include_directories(src/include)
 
 add_library(aoc-2021 STATIC src/include/aoc-2021.hpp src/lib/aoc-2021.cpp)
 
+add_library(bingo STATIC src/include/bingo.hpp src/lib/bingo.cpp)
+
 add_executable(dec3-2 src/bin/dec3-2.cpp)
 
 target_link_libraries(dec3-2 PRIVATE aoc-2021)
 
+add_executable(dec4 src/bin/dec4.cpp)
 
+target_link_libraries(dec4 PRIVATE bingo)
 
