@@ -3,6 +3,7 @@ project(advent_of_code_2021)
 find_package(Boost)
 
 set(CMAKE_CXX_STANDARD 23)
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address -fno-omit-frame-pointer -Wall")
 
 include_directories(src/include)
 
@@ -20,3 +21,6 @@ add_executable(dec4 src/bin/dec4.cpp)
 
 target_link_libraries(dec4 PRIVATE bingo aoc-2021)
 
+add_executable(dec5 src/bin/dec5.cpp)
+
+target_link_libraries(dec5 PRIVATE aoc-2021)
