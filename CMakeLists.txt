@@ -4,6 +4,7 @@ find_package(Boost)
 
 set(CMAKE_CXX_STANDARD 23)
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address -fno-omit-frame-pointer -Wall")
+set(CMAKE_CXX_FLAGS "-Wall -ftrapv")
 
 include_directories(src/include)
 
@@ -24,3 +25,8 @@ target_link_libraries(dec4 PRIVATE bingo aoc-2021)
 add_executable(dec5 src/bin/dec5.cpp)
 
 target_link_libraries(dec5 PRIVATE aoc-2021)
+
+
+add_executable(dec6 src/bin/dec6.cpp)
+
+target_link_libraries(dec6 PRIVATE aoc-2021)

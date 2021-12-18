@@ -2,6 +2,7 @@
 #include <iostream>
 #include <charconv>
 #include <boost/tokenizer.hpp>
+#include <algorithm>
 
 using namespace aoc2021;
 
@@ -42,22 +43,58 @@ int main(int argc, char** argv) {
     }
   }
 
+  std::cout << "max_x " << max_x << " max_y " << max_y << std::endl;
+
   std::vector<std::vector<uint16_t>> ocean_floor;
   std::vector<uint16_t> initial_counts;
   initial_counts.resize(max_x + 1, 0);
   ocean_floor.resize(max_y + 1, initial_counts);
 
+
   for (const auto& coordinate : coordinates) {
     if (coordinate[0] == coordinate[2]) {
-      for (uint16_t row = coordinate[1]; row <= coordinate[3]; ++row) {
+      auto start = std::min(coordinate[1], coordinate[3]);
+      auto end = std::max(coordinate[1], coordinate[3]);
+      for (uint16_t row = start; row <= end; ++row) {
         ocean_floor[row][coordinate[0]]++;
       }
-    } else {
-      for (uint16_t col = coordinate[0]; col <= coordinate[2]; ++col) {
+    } else if (coordinate[1] == coordinate[3]){
+      auto start = std::min(coordinate[0], coordinate[2]);
+      auto end = std::max(coordinate[0], coordinate[2]);
+      for (uint16_t col = start; col <= end; ++col) {
         ocean_floor[coordinate[1]][col]++;
+      }
+    } else {
+      auto x1 = coordinate[0];
+      auto y1 = coordinate[1];
+      auto x2 = coordinate[2];
+      auto y2 = coordinate[3];
+
+      if (y1 > y2) {
+         std::swap(y1, y2);
+         std::swap(x1, x2);
+      }
+
+      int16_t delta_x = (x1 < x2) ? 1 : -1;
+      while (y1 <= y2) {
+        ocean_floor[y1++][x1]++;
+        x1 += delta_x;
       }
     }
   }
+
+    std::cout << "------------------------------------------------------" << std::endl;
+      for (const auto& v : ocean_floor) {
+    for (auto x : v) {
+      if (x == 0) {
+        std::cout << ".";
+      } else {
+        std::cout << x;
+      }
+    }
+    std::cout << std::endl;
+  }
+
 
   uint32_t total = 0;
   for (auto v : ocean_floor) {

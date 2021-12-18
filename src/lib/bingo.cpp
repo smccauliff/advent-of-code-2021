@@ -6,20 +6,6 @@
 
 namespace bingo {
 
-
-std::vector<uint32_t> ParseNumberSelections(const std::string& input) {
-  std::vector<uint32_t> rv;
-  boost::tokenizer<> toker(input);
-  for (const auto& token : toker) {
-    uint32_t value;
-    auto from_chars_result = std::from_chars(token.data(), token.data() + token.length(), value);
-    ALWAYS_ASSERT(static_cast<uint64_t>(from_chars_result.ec) == 0);
-    rv.push_back(value);
-  }
-
-  return rv;
-}
-
 BBoard ParseBoard(std::vector<std::string>::const_iterator begin, std::vector<std::string>::const_iterator end) {
   auto current = begin;
   BBoard board;

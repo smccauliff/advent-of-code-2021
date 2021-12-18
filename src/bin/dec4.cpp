@@ -9,7 +9,7 @@ using namespace bingo;
 int main(int argc, char** argv) {
   auto lines = ParseLinesFromFile(argv[1]);
 
-  auto selected_numbers = ParseNumberSelections(lines[0]);
+  auto selected_numbers = ParseNumbers(lines[0]);
 
   std::list<BBoard> boards;
   for (uint32_t line_index = 1; line_index < lines.size(); line_index += kBoardDim) {

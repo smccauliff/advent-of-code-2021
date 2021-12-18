@@ -15,6 +15,8 @@ namespace aoc2021 {
 std::vector<std::string> ParseLinesFromFile(const std::string& fname);
 
 
+std::vector<uint32_t> ParseNumbers(const std::string& input);
+
 class LifeSupportComputer {
  public:
   LifeSupportComputer(std::vector<std::string>& inputs);

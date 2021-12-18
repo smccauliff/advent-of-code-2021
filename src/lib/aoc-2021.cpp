@@ -5,11 +5,23 @@
 #include <string>
 #include <aoc-2021.hpp>
 #include <numeric>
-#include <algorithm>
-#include <cmath>
+#include <boost/tokenizer.hpp>
+#include <charconv>
 
 namespace aoc2021 {
 
+std::vector<uint32_t> ParseNumbers(const std::string& input) {
+  std::vector<uint32_t> rv;
+  boost::tokenizer<> toker(input);
+  for (const auto& token : toker) {
+    uint32_t value;
+    auto from_chars_result = std::from_chars(token.data(), token.data() + token.length(), value);
+    ALWAYS_ASSERT(static_cast<uint64_t>(from_chars_result.ec) == 0);
+    rv.push_back(value);
+  }
+
+  return rv;
+}
 std::vector<std::string> ParseLinesFromFile(const std::string& fname) {
   std::ifstream in(fname, std::ios::binary);
   ALWAYS_ASSERT(in.good());
