@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <list>
+#include <numeric>
 
 #define ALWAYS_ASSERT(TEST) \
   if (!(TEST)) {            \
@@ -11,6 +12,12 @@
   }
 
 namespace aoc2021 {
+
+template<typename Container, typename Sum, typename ContainedType, typename BinaryOperation>
+Sum AccumulateContainer(const Container& container, Sum initial_value, BinaryOperation binary_operation) {
+  return std::accumulate(container.begin(), container.end(), initial_value, binary_operation);
+}
+
 
 std::vector<std::string> ParseLinesFromFile(const std::string& fname);
 
