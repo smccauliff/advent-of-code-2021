@@ -3,7 +3,7 @@ project(advent_of_code_2021)
 find_package(Boost)
 
 set(CMAKE_CXX_STANDARD 23)
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address -fno-omit-frame-pointer -Wall")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address -fno-omit-frame-pointer -Wall")
 #set(CMAKE_CXX_FLAGS "-Wall -ftrapv")
 
 include_directories(src/include)
@@ -26,7 +26,6 @@ add_executable(dec5 src/bin/dec5.cpp)
 
 target_link_libraries(dec5 PRIVATE aoc-2021)
 
-
 add_executable(dec6 src/bin/dec6.cpp)
 
 target_link_libraries(dec6 PRIVATE aoc-2021)
@@ -34,3 +33,12 @@ target_link_libraries(dec6 PRIVATE aoc-2021)
 add_executable(dec7 src/bin/dec7.cpp)
 
 target_link_libraries(dec7 PRIVATE aoc-2021)
+
+add_executable(dec8 src/bin/dec8.cpp)
+
+target_link_libraries(dec8 PRIVATE aoc-2021)
+
+
+add_executable(dec9 src/bin/dec9.cpp)
+
+target_link_libraries(dec9 PRIVATE aoc-2021)
